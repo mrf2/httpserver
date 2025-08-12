@@ -24,3 +24,8 @@ GET /cgi-bin/adder?123&32 HTTP/1.1
  * A CGI program sends its dynamic content to the standard output.
  * Before the child process loads and runs the CGI program, it uses the `dup2()` function to redirect standard output to the connected descriptor that is associated with the client. Thus, anything that the CGI program writes to standard output goes directly to the client.
  * Since the parent does not know the type or size of the content that the child generates, the child is reponsible for generating the **`Content-type`** and **`Content-length`** response headers, as well as the empty line that terminates the headers.
+
+### Passing arguments in HTTP POST requests to CGI programs
+For POST requests, the child would also need to redirect standard input to the connected descriptor. The CGI program would then read the arguments in the request body from standard input.
+
+
